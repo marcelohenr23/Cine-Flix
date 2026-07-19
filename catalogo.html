@@ -352,7 +352,6 @@
             color: #94a3b8;
             font-weight: 500;
             letter-spacing: 0.5px;
-            margin-bottom: 166px; /* Mantendo espaçamento original */
             margin-bottom: 16px;
             text-align: center;
             font-style: italic;
@@ -430,9 +429,9 @@
 
                     <p>Escaneie o QR Code ou clique abaixo para copiar a chave de pagamento segura.</p>
                     
-                    <!-- QR Code atualizado estritamente com sua chave aleatória corrigida -->
+                    <!-- QR Code atualizado com sua chave aleatória limpa -->
                     <div class="qr-code">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=00020101221226620014br.gov.bcb.pix2336dfe7ba22-2505-4f4f-a1f9-aec0e440da13" alt="QR Code Pix">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=dfe7ba22-2505-4f4f-a1f9-aec0e440da13" alt="QR Code Pix">
                     </div>
 
                     <div class="pix-key-label">Status da Chave:</div>
@@ -501,8 +500,8 @@
     <script>
         let intervalocronometro;
         
-        // Chave Pix corrigida exatamente para o formato solicitado
-        const chaveRealOculta = "00020101221226620014br.gov.bcb.pix2336dfe7ba22-2505-4f4f-a1f9-aec0e440da13"; 
+        // CORREÇÃO: Chave pura e limpa sem metadados estáticos grudados que quebravam no banco
+        const chaveRealOculta = "dfe7ba22-2505-4f4f-a1f9-aec0e440da13"; 
 
         function fecharAnuncio() {
             document.getElementById('adPopup').classList.add('hidden');
@@ -516,15 +515,35 @@
             iniciarContagem(5 * 60);
         }
 
+        // CORREÇÃO: Método alternativo de fallback caso o navigator.clipboard falhe em navegadores antigos de celular
         function copiarPix() {
-            navigator.clipboard.writeText(chaveRealOculta).then(() => {
-                const toast = document.getElementById('successToast');
-                toast.classList.add('show');
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 4000);
-            });
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(chaveRealOculta).then(mostrarFeedback);
+            } else {
+                // Fallback para navegadores HTTP ou antigos
+                const textArea = document.createElement("textarea");
+                textArea.value = chaveRealOculta;
+                textArea.style.position = "fixed"; 
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    mostrarFeedback();
+                } catch (err) {
+                    alert('Erro ao copiar chave automaticamente. Tente novamente.');
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function mostrarFeedback() {
+            const toast = document.getElementById('successToast');
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
         }
 
         function iniciarContagem(duracao) {
@@ -537,10 +556,10 @@
                 let minutos = parseInt(tempo / 60, 10);
                 let segundos = parseInt(tempo % 60, 10);
 
-                minutos = minutes < 10 ? "0" + minutos : minutes;
+                minutos = minutos < 10 ? "0" + minutos : minutes;
                 segundos = segundos < 10 ? "0" + segundos : segundos;
 
-                display.textContent = minutes + ":" + segundos;
+                display.textContent = minutos + ":" + segundos;
 
                 if (--tempo < 0) {
                     clearInterval(intervalocronometro);
