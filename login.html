@@ -119,13 +119,13 @@
 <body>
 
     <div class="container">
-        <h2>Acessar sua conta</h2>
-        <p class="subtitle">Bem-vindo de volta! Insira seus dados para começar a assistir.</p>
+        <h2>Entrar no Cine-Flix</h2>
+        <p class="subtitle">Bem-vindo de volta! Insira seus dados para acessar o catálogo.</p>
         
         <form id="loginForm" action="#" method="POST">
             <div class="input-wrapper">
-                <label for="email">E-mail ou Usuário</label>
-                <input type="text" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                <label for="username">E-mail ou Usuário</label>
+                <input type="text" id="username" name="username" required placeholder="seuemail@exemplo.com">
             </div>
             
             <div class="input-wrapper">
@@ -136,15 +136,15 @@
             <button type="submit" class="btn-primary">Entrar</button>
         </form>
 
-        <!-- Se o usuário caiu aqui direto e não tem conta, ele consegue voltar pro index -->
+        <!-- Link caso o usuário queira voltar para a tela de cadastro -->
         <p class="switch-text">Novo por aqui? <a href="index.html">Criar uma conta</a></p>
     </div>
 
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Aqui futuramente vai a validação de login para entrar na tela dos filmes
-            alert('Validando dados de acesso...');
+            // Espaço reservado para conectar seu banco de dados ou lógica de login futuramente
+            alert('Validando seus dados de acesso...');
         });
     </script>
 </body>
