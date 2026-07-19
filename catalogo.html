@@ -110,7 +110,7 @@
             gap: 12px;
         }
 
-        /* --- Listas de Filmes Ajustadas --- */
+        /* --- Listas de Filmes --- */
         .movie-section {
             padding: 0 4% 32px 4%;
             margin-top: -20px;
@@ -140,7 +140,7 @@
         .movie-grid::-webkit-scrollbar { display: none; }
         .movie-grid { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Estrutura do Card (Imagem + Texto abaixo) */
+        /* Estrutura Vertical do Card */
         .movie-container {
             display: flex;
             flex-direction: column;
@@ -153,7 +153,6 @@
             transform: scale(1.05);
         }
 
-        /* Proporção perfeita para as suas imagens verticais */
         .movie-poster {
             width: 180px;
             height: 240px;
@@ -408,10 +407,10 @@
         </div>
     </div>
 
-    <!-- Seções com Grade de Filmes Atualizada -->
+    <!-- Seções com Grade de Filmes Expandida -->
     <div class="movie-section">
         
-        <!-- Fileira 1 -->
+        <!-- Fileira 1: Populares no Cine-Flix -->
         <div class="movie-row">
             <h2 class="row-title">Populares no Cine-Flix</h2>
             <div class="movie-grid">
@@ -441,10 +440,30 @@
                     <div class="movie-title-label">Nocaute</div>
                 </div>
 
+                <div class="movie-container">
+                    <img class="movie-poster" src="https://i.postimg.cc/dQz55X7s/06af2f10-f1a9-445a-9c5b-d40a3b55b942-m.jpg" alt="A ilha dos mortos">
+                    <div class="movie-title-label">A ilha dos mortos</div>
+                </div>
+
+                <div class="movie-container">
+                    <img class="movie-poster" src="https://i.postimg.cc/QNRffPBZ/18e5f08c-81e9-447c-892f-79c981b908dd-m.jpg" alt="O Grito 3">
+                    <div class="movie-title-label">O Grito 3</div>
+                </div>
+
+                <div class="movie-container">
+                    <img class="movie-poster" src="https://i.postimg.cc/05LVV36z/2a084cc6-3f18-4ff3-b5d3-2fffac894ea0-m.jpg" alt="Jogo de Morte">
+                    <div class="movie-title-label">Jogo de Morte</div>
+                </div>
+
+                <div class="movie-container">
+                    <img class="movie-poster" src="https://i.postimg.cc/qB911Yt3/3731e254-eeb5-4bed-84e8-7eafeaeefed5-m.jpg" alt="Caça as Bruxas">
+                    <div class="movie-title-label">Caça as Bruxas</div>
+                </div>
+
             </div>
         </div>
 
-        <!-- Fileira 2 -->
+        <!-- Fileira 2: Adicionados Recentemente -->
         <div class="movie-row">
             <h2 class="row-title">Adicionados Recentemente</h2>
             <div class="movie-grid">
@@ -455,13 +474,33 @@
                 </div>
 
                 <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/HW8vmHXW/9e0f4669-9a5e-4602-9d9f-559b4f7834c7-m.jpg" alt="No olho do furacão">
-                    <div class="movie-title-label">No olho do furacão</div>
+                    <img class="movie-poster" src="https://i.postimg.cc/BZdmmy88/659f9697-e227-429c-b1dc-82d9005a16e8-m.jpg" alt="Assassino a Preço Fixo">
+                    <div class="movie-title-label">Assassino a Preço Fixo</div>
                 </div>
 
                 <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/13xZRXYt/718285cd-6a67-447e-aba0-25bcaa5a3176-m.jpg" alt="Em Busca de Vingança">
-                    <div class="movie-title-label">Em Busca de Vingança</div>
+                    <img class="movie-poster" src="https://i.postimg.cc/HWf66KJT/6afdfeed-b0a8-4862-893c-99144a5def20-m.jpg" alt="Jogos Mortais o Final">
+                    <div class="movie-title-label">Jogos Mortais o Final</div>
+                </div>
+
+                <div class="movie-container">
+                    <img class="movie-poster" src="https://i.postimg.cc/66DMMS76/9c7f1a61-1637-44aa-a7e0-6636bf3507a4-m.jpg" alt="O imbatível 3">
+                    <div class="movie-title-label">O imbatível 3</div>
+                </div>
+
+                <div class="movie-container">
+                    <img class="movie-poster" src="https://i.postimg.cc/QNRffPBx/dd74c265-69ab-4b6e-91ec-3121f60b5838-m.jpg" alt="Homens em Fúria">
+                    <div class="movie-title-label">Homens em Fúria</div>
+                </div>
+
+                <div class="movie-container">
+                    <img class="movie-poster" src="https://i.postimg.cc/bYKmmMGs/f4a3da90-f7c6-4211-bd00-5bf506395132-m.jpg" alt="Vingança implacável">
+                    <div class="movie-title-label">Vingança implacável</div>
+                </div>
+
+                <div class="movie-container">
+                    <img class="movie-poster" src="https://i.postimg.cc/HW8vmHXW/9e0f4669-9a5e-4602-9d9f-559b4f7834c7-m.jpg" alt="No olho do furacão">
+                    <div class="movie-title-label">No olho do furacão</div>
                 </div>
 
                 <div class="movie-container">
@@ -505,42 +544,4 @@
                 textArea.focus();
                 textArea.select();
                 try {
-                    document.execCommand('copy');
-                    mostrarFeedback();
-                } catch (err) {
-                    alert('Erro ao copiar chave automaticamente.');
-                }
-                document.body.removeChild(textArea);
-            }
-        }
-
-        function mostrarFeedback() {
-            const toast = document.getElementById('successToast');
-            toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 4000);
-        }
-
-        function iniciarContagem(duracao) {
-            let tempo = duracao;
-            const display = document.getElementById('countdown');
-            clearInterval(intervalocronometro);
-
-            intervalocronometro = setInterval(function () {
-                let minutos = parseInt(tempo / 60, 10);
-                let segundos = parseInt(tempo % 60, 10);
-
-                minutos = minutos < 10 ? "0" + minutos : minutos;
-                segundos = segundos < 10 ? "0" + segundos : segundos;
-
-                display.textContent = Minutos + ":" + segundos;
-
-                if (--tempo < 0) {
-                    clearInterval(intervalocronometro);
-                    alert("O tempo limite para o pagamento expirou. O Pix foi cancelado.");
-                    fecharAnuncio();
-                }
-            }, 1000);
-        }
-    </script>
-</body>
-</html>
+     
