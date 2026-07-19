@@ -334,25 +334,31 @@
             font-size: 15px;
         }
 
+        /* --- MENSAGEM DO PIX COPIADO ESTILO NEO-NEON --- */
         .success-toast {
-            margin-top: 14px;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(21, 128, 61, 0.2) 100%);
-            border: 1px solid rgba(34, 197, 94, 0.4);
+            margin-top: 16px;
+            background: rgba(225, 29, 72, 0.1);
+            border: 2px solid #e11d48;
             padding: 12px;
             border-radius: 12px;
-            color: #4ade80;
+            color: #fff;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             opacity: 0;
             transform: translateY(10px);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.6), inset 0 0 10px rgba(225, 29, 72, 0.3);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
         }
 
-        .success-toast.show { opacity: 1; transform: translateY(0); }
+        .success-toast.show { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
     </style>
 </head>
 <body>
@@ -386,8 +392,10 @@
                     </div>
                     <div class="pix-key-label">Status da Chave:</div>
                     <div class="pix-code-container">🔒 Chave Oculta por Segurança</div>
-                    <button class="btn-copy" onclick="copiarCodigoChave()">Copiar Código Copia e Cola</button>
-                    <div class="success-toast" id="successToast">✨ Chave copiada com sucesso! Pronta para pagar.</div>
+                    <button class="btn-copy" onclick="copiarChavePixRapido()">Copiar Código Copia e Cola</button>
+                    
+                    <!-- Caixa de Sucesso Neo-Neon -->
+                    <div class="success-toast" id="successToast">⚡ PIX COPIADO! Cole no seu banco.</div>
                 </div>
             </div>
         </div>
@@ -417,117 +425,40 @@
         </div>
     </div>
 
-    <!-- Seções com TODA a Grade de Filmes Recuperada -->
+    <!-- Seções com TODA a Grade de Filmes -->
     <div class="movie-section">
-        
-        <!-- Fileira 1: Populares no Cine-Flix -->
         <div class="movie-row">
             <h2 class="row-title">Populares no Cine-Flix</h2>
             <div class="movie-grid">
-                
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/13xZRXYt/718285cd-6a67-447e-aba0-25bcaa5a3176-m.jpg" alt="Em Busca de Vingança">
-                    <div class="movie-title-label">Em Busca de Vingança</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/ryRZTcx8/4958a316-d354-42dd-9062-9664bfbbf51e-m.jpg" alt="O Passageiro">
-                    <div class="movie-title-label">O Passageiro</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/HW8vmHXW/9e0f4669-9a5e-4602-9d9f-559b4f7834c7-m.jpg" alt="No olho do furacão">
-                    <div class="movie-title-label">No olho do furacão</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/Vs0Zw1nz/b512164c-afb8-4172-8cd1-71326314b5ac-m.jpg" alt="Riddick 3">
-                    <div class="movie-title-label">Riddick 3</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/SQY14qCS/c43416af-3729-49db-82f7-9f17bdea0bff-m.jpg" alt="Nocaute">
-                    <div class="movie-title-label">Nocaute</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/dQz55X7s/06af2f10-f1a9-445a-9c5b-d40a3b55b942-m.jpg" alt="A ilha dos mortos">
-                    <div class="movie-title-label">A ilha dos mortos</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/QNRffPBZ/18e5f08c-81e9-447c-892f-79c981b908dd-m.jpg" alt="O Grito 3">
-                    <div class="movie-title-label">O Grito 3</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/05LVV36z/2a084cc6-3f18-4ff3-b5d3-2fffac894ea0-m.jpg" alt="Jogo de Morte">
-                    <div class="movie-title-label">Jogo de Morte</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/qB911Yt3/3731e254-eeb5-4bed-84e8-7eafeaeefed5-m.jpg" alt="Caça as Bruxas">
-                    <div class="movie-title-label">Caça as Bruxas</div>
-                </div>
-
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/13xZRXYt/718285cd-6a67-447e-aba0-25bcaa5a3176-m.jpg" alt="Em Busca de Vingança"><div class="movie-title-label">Em Busca de Vingança</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/ryRZTcx8/4958a316-d354-42dd-9062-9664bfbbf51e-m.jpg" alt="O Passageiro"><div class="movie-title-label">O Passageiro</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/HW8vmHXW/9e0f4669-9a5e-4602-9d9f-559b4f7834c7-m.jpg" alt="No olho do furacão"><div class="movie-title-label">No olho do furacão</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/Vs0Zw1nz/b512164c-afb8-4172-8cd1-71326314b5ac-m.jpg" alt="Riddick 3"><div class="movie-title-label">Riddick 3</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/SQY14qCS/c43416af-3729-49db-82f7-9f17bdea0bff-m.jpg" alt="Nocaute"><div class="movie-title-label">Nocaute</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/dQz55X7s/06af2f10-f1a9-445a-9c5b-d40a3b55b942-m.jpg" alt="A ilha dos mortos"><div class="movie-title-label">A ilha dos mortos</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/QNRffPBZ/18e5f08c-81e9-447c-892f-79c981b908dd-m.jpg" alt="O Grito 3"><div class="movie-title-label">O Grito 3</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/05LVV36z/2a084cc6-3f18-4ff3-b5d3-2fffac894ea0-m.jpg" alt="Jogo de Morte"><div class="movie-title-label">Jogo de Morte</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/qB911Yt3/3731e254-eeb5-4bed-84e8-7eafeaeefed5-m.jpg" alt="Caça as Bruxas"><div class="movie-title-label">Caça as Bruxas</div></div>
             </div>
         </div>
 
-        <!-- Fileira 2: Adicionados Recentemente -->
         <div class="movie-row">
             <h2 class="row-title">Adicionados Recentemente</h2>
             <div class="movie-grid">
-                
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/nV9SxZBz/df3ee2d9-be44-45a1-85c9-76521274b898-m.jpg" alt="Fúria em Alto mar">
-                    <div class="movie-title-label">Fúria em Alto mar</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/BZdmmy88/659f9697-e227-429c-b1dc-82d9005a16e8-m.jpg" alt="Assassino a Preço Fixo">
-                    <div class="movie-title-label">Assassino a Preço Fixo</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/HWf66KJT/6afdfeed-b0a8-4862-893c-99144a5def20-m.jpg" alt="Jogos Mortais o Final">
-                    <div class="movie-title-label">Jogos Mortais o Final</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/66DMMS76/9c7f1a61-1637-44aa-a7e0-6636bf3507a4-m.jpg" alt="O imbatível 3">
-                    <div class="movie-title-label">O imbatível 3</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/QNRffPBx/dd74c265-69ab-4b6e-91ec-3121f60b5838-m.jpg" alt="Homens em Fúria">
-                    <div class="movie-title-label">Homens em Fúria</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/bYKmmMGs/f4a3da90-f7c6-4211-bd00-5bf506395132-m.jpg" alt="Vingança implacável">
-                    <div class="movie-title-label">Vingança implacável</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/HW8vmHXW/9e0f4669-9a5e-4602-9d9f-559b4f7834c7-m.jpg" alt="No olho do furacão">
-                    <div class="movie-title-label">No olho do furacão</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/Vs0Zw1nz/b512164c-afb8-4172-8cd1-71326314b5ac-m.jpg" alt="Riddick 3">
-                    <div class="movie-title-label">Riddick 3</div>
-                </div>
-
-                <div class="movie-container">
-                    <img class="movie-poster" src="https://i.postimg.cc/ryRZTcx8/4958a316-d354-42dd-9062-9664bfbbf51e-m.jpg" alt="O Passageiro">
-                    <div class="movie-title-label">O Passageiro</div>
-                </div>
-
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/nV9SxZBz/df3ee2d9-be44-45a1-85c9-76521274b898-m.jpg" alt="Fúria em Alto mar"><div class="movie-title-label">Fúria em Alto mar</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/BZdmmy88/659f9697-e227-429c-b1dc-82d9005a16e8-m.jpg" alt="Assassino a Preço Fixo"><div class="movie-title-label">Assassino a Preço Fixo</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/HWf66KJT/6afdfeed-b0a8-4862-893c-99144a5def20-m.jpg" alt="Jogos Mortais o Final"><div class="movie-title-label">Jogos Mortais o Final</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/66DMMS76/9c7f1a61-1637-44aa-a7e0-6636bf3507a4-m.jpg" alt="O imbatível 3"><div class="movie-title-label">O imbatível 3</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/QNRffPBx/dd74c265-69ab-4b6e-91ec-3121f60b5838-m.jpg" alt="Homens em Fúria"><div class="movie-title-label">Homens em Fúria</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/bYKmmMGs/f4a3da90-f7c6-4211-bd00-5bf506395132-m.jpg" alt="Vingança implacável"><div class="movie-title-label">Vingança implacável</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/HW8vmHXW/9e0f4669-9a5e-4602-9d9f-559b4f7834c7-m.jpg" alt="No olho do furacão"><div class="movie-title-label">No olho do furacão</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/Vs0Zw1nz/b512164c-afb8-4172-8cd1-71326314b5ac-m.jpg" alt="Riddick 3"><div class="movie-title-label">Riddick 3</div></div>
+                <div class="movie-container"><img class="movie-poster" src="https://i.postimg.cc/ryRZTcx8/4958a316-d354-42dd-9062-9664bfbbf51e-m.jpg" alt="O Passageiro"><div class="movie-title-label">O Passageiro</div></div>
             </div>
         </div>
     </div>
 
-    <!-- Script leve para o contador do Pix e a cópia da chave -->
+    <!-- Scripts Otimizados e Corrigidos -->
     <script>
         var loopDoCronometro = null;
         var chavePixGlobal = "dfe7ba22-2505-4f4f-a1f9-aec0e440da13";
@@ -540,4 +471,24 @@
             loopDoCronometro = setInterval(function() {
                 var m = Math.floor(tempoFaltante / 60);
                 var s = tempoFaltante % 60;
-                if(campoTe
+                if(campoTexto) {
+                    campoTexto.textContent = (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+                }
+                tempoFaltante--;
+                if(tempoFaltante < 0) {
+                    clearInterval(loopDoCronometro);
+                    document.getElementById('adPopup').style.setProperty('display', 'none', 'important');
+                }
+            }, 1000);
+        }
+
+        // Nova função segura para copiar e acionar o Neo-Neon sem travar
+        function copiarChavePixRapido() {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(chavePixGlobal).then(mostrarMensagemNeon);
+            } else {
+                var inputTemporario = document.createElement("textarea");
+                inputTemporario.value = chavePixGlobal;
+                inputTemporario.style.position = "fixed";
+                document.body.appendChild(inputTemporario);
+                inputTemporario.focus
