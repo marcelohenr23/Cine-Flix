@@ -133,7 +133,6 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Ativado pelo JavaScript após o cadastro */
         .modal-overlay.active {
             opacity: 1;
             pointer-events: auto;
@@ -187,8 +186,7 @@
             margin-bottom: 28px;
         }
 
-        /* Botão estilizado para mandar para a tela de login separada */
-        .btn-to-login {
+        .btn-watch {
             display: block;
             width: 100%;
             padding: 14px;
@@ -204,14 +202,13 @@
             transition: filter 0.2s;
         }
 
-        .btn-to-login:hover {
+        .btn-watch:hover {
             filter: brightness(1.2);
         }
     </style>
 </head>
 <body>
 
-    <!-- FORMULÁRIO DE CADASTRO FIXO -->
     <div class="container">
         <h2>Criar sua conta</h2>
         <p class="subtitle">Crie seu perfil para liberar milhares de filmes e séries grátis.</p>
@@ -235,11 +232,10 @@
             <button type="submit" class="btn-primary">Começar a assistir</button>
         </form>
 
-        <!-- Link caso a pessoa queira fazer login direto sem se cadastrar -->
         <p class="switch-text">Já tem uma conta? <a href="login.html">Fazer Login</a></p>
     </div>
 
-    <!-- TELINHA DE PARABÉNS / CONTA CRIADA -->
+    <!-- POP-UP DE SUCESSO -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-content">
             <div class="success-icon">
@@ -249,10 +245,10 @@
             </div>
             
             <h3>Conta criada com sucesso!</h3>
-            <p>Parabéns! Suas configurações foram salvas e seu perfil do Cine-Flix já está pronto para uso.</p>
+            <p>Pipoca pronta? Suas configurações foram salvas e seu perfil do Cine-Flix já está pronto para uso.</p>
 
-            <!-- Mudado aqui: Agora direciona direto para o login.html -->
-            <a href="login.html" class="btn-to-login">Bora assistir!</a>
+            <!-- Leva direto para a página de login separada -->
+            <a href="login.html" class="btn-watch">Bora assistir!</a>
         </div>
     </div>
 
@@ -260,7 +256,6 @@
         const registerForm = document.getElementById('registerForm');
         const successModal = document.getElementById('successModal');
 
-        // Abre a telinha de parabéns por cima ao enviar o formulário
         registerForm.addEventListener('submit', function(e) {
             e.preventDefault(); 
             successModal.classList.add('active');
