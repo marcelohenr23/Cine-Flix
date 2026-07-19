@@ -20,11 +20,10 @@
             align-items: center;
             min-height: 100vh;
             color: #f8fafc;
-            overflow: hidden;
         }
 
-        /* --- Card Principal --- */
-        .card-box {
+        /* --- Card do Formulário --- */
+        .container {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -33,26 +32,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             width: 100%;
             max-width: 440px;
-            position: relative;
-            min-height: 480px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        /* --- Estado 1: Formulário --- */
-        .form-screen {
-            transition: all 0.5s ease;
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .form-screen.hidden {
-            opacity: 0;
-            transform: scale(0.9);
-            pointer-events: none;
-            position: absolute;
-            width: calc(100% - 80px);
         }
 
         h2 {
@@ -119,94 +98,98 @@
             transform: translateY(-1px);
         }
 
-        /* --- Estado 2: Tela de Sucesso Cine --- */
-        .success-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .switch-text {
             text-align: center;
-            opacity: 0;
-            transform: scale(1.1);
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            pointer-events: none;
-            position: absolute;
-            left: 40px;
-            right: 40px;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #94a3b8;
         }
 
-        .success-screen.visible {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-            position: relative;
+        .switch-text a {
+            color: #e11d48;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .switch-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- POP-UP / TELA DE SUCESSO SOBREPOSTA --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
-        /* Ícone de Sucesso */
-        .success-icon-box {
-            width: 90px;
-            height: 90px;
+        /* Ativado pelo JavaScript após o cadastro */
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 90%;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
             background: rgba(34, 197, 94, 0.1);
             border: 2px solid rgba(34, 197, 94, 0.4);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 24px;
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+            margin: 0 auto 24px auto;
         }
 
-        .success-icon-box svg {
-            width: 45px;
-            height: 45px;
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
             color: #22c55e;
-            stroke-dasharray: 100;
-            stroke-dashoffset: 100;
-            animation: drawCheck 0.6s 0.3s forwards ease-in-out;
         }
 
-        @keyframes drawCheck {
-            to { stroke-dashoffset: 0; }
-        }
-
-        .success-screen h3 {
-            font-size: 26px;
-            font-weight: 700;
+        .modal-content h3 {
+            font-size: 24px;
             color: #fff;
             margin-bottom: 12px;
         }
 
-        .success-screen p {
+        .modal-content p {
             color: #94a3b8;
             font-size: 15px;
             line-height: 1.6;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
 
-        /* Barra de carregamento */
-        .loader-container {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            height: 6px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 24px;
-        }
-
-        .loader-bar {
-            height: 100%;
-            width: 0;
-            background: linear-gradient(to right, #e11d48, #22c55e);
-            border-radius: 10px;
-            animation: loadIn 2.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes loadIn {
-            to { width: 100%; }
-        }
-
-        .btn-watch {
+        /* Botão estilizado para mandar para a tela de login separada */
+        .btn-to-login {
+            display: block;
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
@@ -215,96 +198,73 @@
             color: #fff;
             font-size: 16px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
             text-decoration: none;
-            display: inline-block;
-            opacity: 0;
-            animation: fadeInBtn 0.5s 2s forwards;
+            text-align: center;
             box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+            transition: filter 0.2s;
         }
 
-        .btn-watch:hover {
+        .btn-to-login:hover {
             filter: brightness(1.2);
-        }
-
-        @keyframes fadeInBtn {
-            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <div class="card-box">
+    <!-- FORMULÁRIO DE CADASTRO FIXO -->
+    <div class="container">
+        <h2>Criar sua conta</h2>
+        <p class="subtitle">Crie seu perfil para liberar milhares de filmes e séries grátis.</p>
         
-        <!-- TELA 1: FORMULÁRIO DE CADASTRO -->
-        <div class="form-screen" id="formScreen">
-            <h2>Criar sua conta</h2>
-            <p class="subtitle">Crie seu perfil para liberar milhares de filmes e séries grátis.</p>
+        <form id="registerForm" action="#" method="POST">
+            <div class="input-wrapper">
+                <label for="username">Nome de usuário</label>
+                <input type="text" id="username" name="username" required placeholder="ex: marcelo_cine">
+            </div>
             
-            <form id="mainRegisterForm">
-                <div class="input-wrapper">
-                    <label for="username">Nome de usuário</label>
-                    <input type="text" id="username" required placeholder="ex: marcelo_cine">
-                </div>
-                
-                <div class="input-wrapper">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" required placeholder="seuemail@exemplo.com">
-                </div>
-                
-                <div class="input-wrapper">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-                
-                <button type="submit" class="btn-primary">Começar a assistir</button>
-            </form>
-        </div>
+            <div class="input-wrapper">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+            </div>
+            
+            <div class="input-wrapper">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required placeholder="••••••••">
+            </div>
+            
+            <button type="submit" class="btn-primary">Começar a assistir</button>
+        </form>
 
-        <!-- TELA 2: SUCESSO DO PERFIL DE FILMES -->
-        <div class="success-screen" id="successScreen">
-            <div class="success-icon-box">
+        <!-- Link caso a pessoa queira fazer login direto sem se cadastrar -->
+        <p class="switch-text">Já tem uma conta? <a href="login.html">Fazer Login</a></p>
+    </div>
+
+    <!-- TELINHA DE PARABÉNS / CONTA CRIADA -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
             </div>
             
-            <h3>Perfil criado com sucesso!</h3>
-            <p>Pipoca pronta? Estamos preparando o catálogo completo e liberando as melhores produções para você.</p>
-            
-            <!-- Linha de progresso -->
-            <div class="loader-container">
-                <div class="loader-bar"></div>
-            </div>
+            <h3>Conta criada com sucesso!</h3>
+            <p>Parabéns! Suas configurações foram salvas e seu perfil do Cine-Flix já está pronto para uso.</p>
 
-            <button class="btn-watch" onclick="reiniciarFluxo()">Bora assistir!</button>
+            <!-- Mudado aqui: Agora direciona direto para o login.html -->
+            <a href="login.html" class="btn-to-login">Bora assistir!</a>
         </div>
-
     </div>
 
     <script>
-        const formScreen = document.getElementById('formScreen');
-        const successScreen = document.getElementById('successScreen');
-        const registerForm = document.getElementById('mainRegisterForm');
+        const registerForm = document.getElementById('registerForm');
+        const successModal = document.getElementById('successModal');
 
+        // Abre a telinha de parabéns por cima ao enviar o formulário
         registerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            formScreen.classList.add('hidden');
-            
-            setTimeout(() => {
-                successScreen.classList.add('visible');
-            }, 200);
+            e.preventDefault(); 
+            successModal.classList.add('active');
         });
-
-        function reiniciarFluxo() {
-            successScreen.classList.remove('visible');
-            setTimeout(() => {
-                registerForm.reset();
-                formScreen.classList.remove('hidden');
-            }, 400);
-        }
     </script>
 </body>
 </html>
