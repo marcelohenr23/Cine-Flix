@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine-Flix | Escolha o Perfil</title>
+    <style>
+        /* --- Configurações Globais --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #f8fafc;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Grid de Perfis --- */
+        .profiles-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 800px;
+            margin-bottom: 50px;
+        }
+
+        /* --- Card Individual de Perfil --- */
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            width: 120px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Caixa do Avatar */
+        .avatar-box {
+            width: 120px;
+            height: 120px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid transparent;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 16px;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        /* Cores de fundo gradiente premium simulando os avatares padrão de streaming */
+        .p1 { background: linear-gradient(45deg, #e11d48, #f43f5e); }
+        .p2 { background: linear-gradient(45deg, #2563eb, #3b82f6); }
+        .p3 { background: linear-gradient(45deg, #16a34a, #22c55e); }
+        
+        /* Ícone interno simples para os avatares */
+        .avatar-box svg.user-icon {
+            width: 50px;
+            height: 50px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Botão de Adicionar Perfil (+) */
+        .avatar-box.add-profile {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+
+        .avatar-box.add-profile svg {
+            width: 40px;
+            height: 40px;
+            color: #64748b;
+            transition: color 0.3s;
+        }
+
+        /* Nome do Usuário */
+        .profile-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #94a3b8;
+            transition: color 0.3s;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-transform: capitalize;
+        }
+
+        /* --- Efeitos de Hover (Passar o Mouse/Toque) --- */
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-card:hover .avatar-box {
+            border-color: #f8fafc;
+            box-shadow: 0 15px 30px rgba(225, 29, 72, 0.4);
+        }
+
+        .profile-card:hover .profile-name {
+            color: #f8fafc;
+        }
+
+        /* Hover específico no botão de adicionar */
+        .profile-card:hover .avatar-box.add-profile {
+            border-color: #64748b;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .profile-card:hover .avatar-box.add-profile svg {
+            color: #f8fafc;
+        }
+
+        /* --- Botão Gerenciar Perfis --- */
+        .btn-manage {
+            background: transparent;
+            border: 1px solid #64748b;
+            color: #64748b;
+            padding: 12px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-manage:hover {
+            border-color: #f8fafc;
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quem está assistindo?</h1>
+
+    <div class="profiles-container">
+        
+        <!-- Perfil 1 (Principal) -->
+        <a href="#" class="profile-card" onclick="selecionarPerfil('Marcelo')">
+            <div class="avatar-box p1">
+                <svg class="user-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <span class="profile-name">Marcelo</span>
+        </a>
+
+        <!-- Perfil 2 -->
+        <a href="#" class="profile-card" onclick="selecionarPerfil('Visitante')">
+            <div class="avatar-box p2">
+                <svg class="user-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <span class="profile-name">Visitante</span>
+        </a>
+
+        <!-- Perfil 3 (Infantil / Kids) -->
+        <a href="#" class="profile-card" onclick="selecionarPerfil('Kids')">
+            <div class="avatar-box p3">
+                <svg class="user-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <span class="profile-name">Kids</span>
+        </a>
+
+        <!-- Opção de Adicionar Novo Perfil -->
+        <div class="profile-card" onclick="adicionarPerfil()">
+            <div class="avatar-box add-profile">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </div>
+            <span class="profile-name">Adicionar</span>
+        </div>
+
+    </div>
+
+    <button class="btn-manage">Gerenciar Perfis</button>
+
+    <script>
+        function selecionarPerfil(nome) {
+            // Aqui futuramente você vai redirecionar para o catálogo principal de filmes
+            alert('Entrando no Cine-Flix como: ' + nome);
+        }
+
+        function adicionarPerfil() {
+            alert('Recurso para criar novo perfil será integrado com o banco de dados.');
+        }
+    </script>
+</body>
+</html>
+
