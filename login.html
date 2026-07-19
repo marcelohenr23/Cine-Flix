@@ -22,8 +22,8 @@
             color: #f8fafc;
         }
 
-        /* --- Card do Formulário de Login --- */
-        .container {
+        /* --- Card Principal --- */
+        .card-box {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -38,7 +38,7 @@
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 8px;
-            background: linear-gradient(to right, #e11d48, #cc1100);
+            background: linear-gradient(to right, #e11d48, #cc1000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -118,33 +118,32 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="card-box">
         <h2>Entrar no Cine-Flix</h2>
         <p class="subtitle">Bem-vindo de volta! Insira seus dados para acessar o catálogo.</p>
         
-        <form id="loginForm" action="#" method="POST">
+        <form id="loginForm">
             <div class="input-wrapper">
-                <label for="username">E-mail ou Usuário</label>
-                <input type="text" id="username" name="username" required placeholder="seuemail@exemplo.com">
+                <label for="login-email">E-mail ou Usuário</label>
+                <input type="text" id="login-email" required placeholder="seuemail@exemplo.com">
             </div>
             
             <div class="input-wrapper">
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password" required placeholder="••••••••">
+                <label for="login-password">Senha</label>
+                <input type="password" id="login-password" required placeholder="••••••••">
             </div>
             
             <button type="submit" class="btn-primary">Entrar</button>
         </form>
 
-        <!-- Link caso o usuário queira voltar para a tela de cadastro -->
         <p class="switch-text">Novo por aqui? <a href="index.html">Criar uma conta</a></p>
     </div>
 
     <script>
+        // Quando clicar em Entrar, valida sem dar 'alert' chato e vai pros perfis
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Espaço reservado para conectar seu banco de dados ou lógica de login futuramente
-            alert('Validando seus dados de acesso...');
+            e.preventDefault(); 
+            window.location.href = "perfis.html"; 
         });
     </script>
 </body>
