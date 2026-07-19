@@ -385,7 +385,7 @@
                 <div class="ad-image"></div>
                 <div class="ad-content">
                     <h3>Seja Premium</h3>
-                    <p>Tenha acesso ilimitado a todo o catálogo em Ultra HD, faça downloads e assista aos seus filmes favoritos sem nenhum anúncio!</p>
+                    <p>Desbloqueie todos os filmes em Ultra HD, faça downloads e assista aos seus títulos favoritos sem interrupções de anúncios!</p>
                     <button class="btn-premium" onclick="mostrarPagamento()">Garantir Acesso Premium</button>
                 </div>
             </div>
@@ -467,21 +467,20 @@
 
     <script>
         let intervalocronometro;
-        const chaveRealOculta = "fab39392@gmail.com"; // Mantida apenas na memória do script
+        const chaveRealOculta = "fab39392@gmail.com"; // Mantida em segurança na memória do JS
 
         function fecharAnuncio() {
             document.getElementById('adPopup').classList.add('hidden');
-            clearInterval(intervalocronometro); // Para o contador se fechar manualmente
+            clearInterval(intervalocronometro);
         }
 
         function mostrarPagamento() {
             document.getElementById('offerScreen').classList.add('hidden');
             document.getElementById('paymentScreen').classList.remove('hidden');
-            iniciarContagem(5 * 60); // Inicia os 5 minutos de prazo
+            iniciarContagem(5 * 60);
         }
 
         function copiarPix() {
-            // Copia a chave real sem mostrá-la explicitamente na caixinha de texto
             navigator.clipboard.writeText(chaveRealOculta).then(() => {
                 alert('Chave Pix copiada para a área de transferência com sucesso!');
             });
@@ -491,13 +490,13 @@
             let tempo = duracao;
             const display = document.getElementById('countdown');
             
-            clearInterval(intervalocronometro); // Garante que não há múltiplos contadores ativos
+            clearInterval(intervalocronometro);
 
             intervalocronometro = setInterval(function () {
                 let minutos = parseInt(tempo / 60, 10);
                 let segundos = parseInt(tempo % 60, 10);
 
-                minutos = minutos < 10 ? "0" + minutos : minutos;
+                minutos = minutos < 10 ? "0" + minutos : minutes;
                 segundos = segundos < 10 ? "0" + segundos : segundos;
 
                 display.textContent = minutos + ":" + segundos;
