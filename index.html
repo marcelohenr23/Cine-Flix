@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta - Profissional</title>
+    <!-- Link dos Ícones (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link do CSS Externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-box">
+            <h2>Criar Conta</h2>
+            <p class="subtitle">Seja bem-vindo! Preencha os dados abaixo para começar.</p>
+
+            <form id="registerForm">
+                <!-- Campo Nome -->
+                <div class="input-group">
+                    <i class="fa-regular fa-user input-icon"></i>
+                    <input type="text" id="name" placeholder="Nome completo" required>
+                </div>
+
+                <!-- Campo Email -->
+                <div class="input-group">
+                    <i class="fa-regular fa-envelope input-icon"></i>
+                    <input type="email" id="email" placeholder="E-mail corporativo ou pessoal" required>
+                </div>
+
+                <!-- Campo Senha -->
+                <div class="input-group">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="password" placeholder="Senha (mínimo 8 caracteres)" required>
+                    <i class="fa-regular fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+
+                <!-- Termos e Condições -->
+                <div class="terms-box">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">Eu aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>.</label>
+                </div>
+
+                <!-- Botão de Enviar -->
+                <button type="submit" class="btn-main">Cadastrar</button>
+
+                <!-- Divisor -->
+                <div class="separator">
+                    <span>ou cadastre-se com</span>
+                </div>
+
+                <!-- Botões Sociais -->
+                <div class="social-buttons">
+                    <button type="button" class="btn-social"><i class="fa-brands fa-google"></i> Google</button>
+                    <button type="button" class="btn-social"><i class="fa-brands fa-apple"></i> Apple</button>
+                </div>
+            </form>
+
+            <p class="footer-text">Já tem uma conta? <a href="login.html">Faça login</a></p>
+        </div>
+    </div>
+
+    <!-- Script para a lógica de mostrar senha -->
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+</html>
