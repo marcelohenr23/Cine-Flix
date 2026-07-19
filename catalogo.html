@@ -204,12 +204,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2000;
+            z-index: 9999 !important; /* Força ficar no topo absoluto */
             opacity: 1;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
 
-        .ad-overlay.hidden { opacity: 0; pointer-events: none; }
+        .ad-overlay.hidden { display: none !important; opacity: 0; pointer-events: none; }
 
         .ad-card {
             background: #1e293b;
@@ -229,21 +229,21 @@
             top: 16px;
             right: 16px;
             background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            width: 36px;
-            height: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff !important;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2010; /* Garante que fique acima de tudo */
+            z-index: 99999 !important;
         }
 
-        .btn-close-ad:hover { background: rgba(225, 29, 72, 1); }
+        .btn-close-ad:active { background: #e11d48; }
         
         .ad-image {
             width: 100%;
@@ -255,7 +255,8 @@
 
         .ad-content { padding: 0 24px; }
         .ad-screen { display: block; }
-        .ad-screen.hidden { display: none; }
+        .ad-screen.hidden { display: none !important; }
+        
         .ad-content h3 {
             font-size: 24px;
             font-weight: 800;
@@ -365,7 +366,8 @@
     <!-- POP-UP PREMIUM -->
     <div class="ad-overlay" id="adPopup">
         <div class="ad-card">
-            <button class="btn-close-ad" onclick="fecharAnuncio()">×</button>
+            <!-- Botão fechar com função totalmente nova isolada -->
+            <button class="btn-close-ad" onclick="fecharModalPremium()">×</button>
             
             <div id="offerScreen" class="ad-screen">
                 <div class="ad-image"></div>
@@ -373,7 +375,7 @@
                     <h3>Seja Premium</h3>
                     <span class="price-tag">Por apenas R$ 4,99</span>
                     <p>Desbloqueie todos os filmes em Ultra HD, faça downloads e assista aos seus títulos favoritos sem interrupções de anúncios!</p>
-                    <button class="btn-premium" onclick="mostrarPagamento()">Garantir Acesso Premium</button>
+                    <button class="btn-premium" onclick="irParaTelaPix()">Garantir Acesso Premium</button>
                 </div>
             </div>
 
@@ -387,7 +389,7 @@
                     </div>
                     <div class="pix-key-label">Status da Chave:</div>
                     <div class="pix-code-container">🔒 Chave Oculta por Segurança</div>
-                    <button class="btn-copy" onclick="copiarPix()">Copiar Código Copia e Cola</button>
+                    <button class="btn-copy" onclick="copiarCodigoChave()">Copiar Código Copia e Cola</button>
                     <div class="success-toast" id="successToast">✨ Chave copiada com sucesso! Pronta para pagar.</div>
                 </div>
             </div>
@@ -528,23 +530,22 @@
         </div>
     </div>
 
+    <!-- SCRIPT TOTALMENTE INDEPENDENTE E SEGURO -->
     <script>
-        let intervalocronometro;
-        const chaveRealOculta = "dfe7ba22-2505-4f4f-a1f9-aec0e440da13"; 
+        var loopDoCronometro = null;
+        var chavePixGlobal = "dfe7ba22-2505-4f4f-a1f9-aec0e440da13";
 
-        function fecharAnuncio() {
-            document.getElementById('adPopup').classList.add('hidden');
-            clearInterval(intervalocronometro);
-            document.getElementById('successToast').classList.remove('show');
+        // Função de fechar ultra simples e direta
+        function fecharModalPremium() {
+            var modal = document.getElementById('adPopup');
+            if(modal) {
+                modal.style.display = 'none';
+            }
+            if(loopDoCronometro) {
+                clearInterval(loopDoCronometro);
+            }
         }
 
-        function mostrarPagamento() {
+        function irParaTelaPix() {
             document.getElementById('offerScreen').classList.add('hidden');
-            document.getElementById('paymentScreen').classList.remove('hidden');
-            iniciarContagem(5 * 60);
-        }
-
-        function copiarPix() {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(chaveRealOculta).then(mostrarFeedback);
-            } el
+            document.getElementBy
