@@ -359,7 +359,7 @@
     <div class="ad-overlay" id="adPopup">
         <div class="ad-card">
             
-            <!-- Fechar Forçado sem dependência de script remoto -->
+            <!-- Fechar Forçado -->
             <button class="btn-close-ad" onclick="document.getElementById('adPopup').style.display='none';">×</button>
             
             <!-- Tela 1: Oferta -->
@@ -380,12 +380,12 @@
                     <div class="timer-badge">Expira em: <span id="countdown">05:00</span></div>
                     <p>Escaneie o QR Code ou clique abaixo para copiar a chave de pagamento segura.</p>
                     <div class="qr-code">
+                        <!-- QR Code atualizado com a sua chave -->
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=dfe7ba22-2505-4f4f-a1f9-aec0e440da13" alt="QR Code Pix">
                     </div>
                     <div class="pix-key-label">Status da Chave:</div>
                     <div class="pix-code-container">🔒 Chave Oculta por Segurança</div>
                     
-                    <!-- Botão aciona cópia e efeito Neon de forma direta -->
                     <button class="btn-copy" onclick="executarCopiaPix();">Copiar Código Copia e Cola</button>
                     
                     <!-- Toast Neo-Neon -->
@@ -410,7 +410,7 @@
                 <span class="age">16+</span>
             </div>
             <p class="hero-description">
-                Após perder tudo o que mais importava, um homem inicia uma caçada implacável contra aqueles que cruzaram seu caminho. Uma história densa cheia de ação, reviravoltas e pura adrenalina.
+                Após perder tudo o que mais importava, um homem inicia uma caçada implacável contra aqueles que cruzaram seu caminho. Uma história densa cheia de ação, reviravoltas e pura adrenaline.
             </p>
             <div class="hero-buttons">
                 <button class="btn btn-play">▶ Assistir</button>
@@ -452,12 +452,12 @@
         </div>
     </div>
 
-    <!-- Script de alta compatibilidade -->
+    <!-- Script com a sua nova chave Pix configurada -->
     <script>
         var chavePix = "dfe7ba22-2505-4f4f-a1f9-aec0e440da13";
         var tempoSegundos = 300;
 
-        // Cronômetro Imparável
+        // Cronômetro
         setInterval(function() {
             var campo = document.getElementById('countdown');
             if (campo) {
@@ -487,4 +487,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+                                                 
