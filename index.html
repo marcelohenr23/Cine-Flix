@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo à Plataforma</title>
+    <title>Cine-Flix | Criar Conta</title>
     <style>
         /* --- Configurações Globais --- */
         * {
@@ -59,7 +59,7 @@
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 8px;
-            background: linear-gradient(to right, #6366f1, #a855f7);
+            background: linear-gradient(to right, #e11d48, #cc1100);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -95,14 +95,14 @@
 
         .input-wrapper input:focus {
             outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+            border-color: #e11d48;
+            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.2);
         }
 
         .btn-primary {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
             border: none;
             border-radius: 12px;
             color: white;
@@ -111,7 +111,7 @@
             cursor: pointer;
             transition: transform 0.2s, filter 0.2s;
             margin-top: 10px;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
         }
 
         .btn-primary:hover {
@@ -119,7 +119,7 @@
             transform: translateY(-1px);
         }
 
-        /* --- Estado 2: Tela de Sucesso Completa --- */
+        /* --- Estado 2: Tela de Sucesso Cine --- */
         .success-screen {
             display: flex;
             flex-direction: column;
@@ -143,7 +143,7 @@
             right: 0;
         }
 
-        /* Ícone de Sucesso Animado */
+        /* Ícone de Sucesso */
         .success-icon-box {
             width: 90px;
             height: 90px;
@@ -184,7 +184,7 @@
             margin-bottom: 32px;
         }
 
-        /* Barra de carregamento/preparação do ambiente */
+        /* Barra de carregamento */
         .loader-container {
             width: 100%;
             background: rgba(255, 255, 255, 0.05);
@@ -197,7 +197,7 @@
         .loader-bar {
             height: 100%;
             width: 0;
-            background: linear-gradient(to right, #22c55e, #10b981);
+            background: linear-gradient(to right, #e11d48, #22c55e);
             border-radius: 10px;
             animation: loadIn 2.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -206,14 +206,14 @@
             to { width: 100%; }
         }
 
-        .btn-dashboard {
+        .btn-watch {
             width: 100%;
             padding: 14px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            border: none;
             border-radius: 12px;
             color: #fff;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -221,11 +221,11 @@
             display: inline-block;
             opacity: 0;
             animation: fadeInBtn 0.5s 2s forwards;
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
         }
 
-        .btn-dashboard:hover {
-            background: #fff;
-            color: #0f172a;
+        .btn-watch:hover {
+            filter: brightness(1.2);
         }
 
         @keyframes fadeInBtn {
@@ -240,46 +240,45 @@
         <!-- TELA 1: FORMULÁRIO DE CADASTRO -->
         <div class="form-screen" id="formScreen">
             <h2>Criar sua conta</h2>
-            <p class="subtitle">Comece a configurar seu novo ambiente de trabalho.</p>
+            <p class="subtitle">Crie seu perfil para liberar milhares de filmes e séries grátis.</p>
             
             <form id="mainRegisterForm">
                 <div class="input-wrapper">
                     <label for="username">Nome de usuário</label>
-                    <input type="text" id="username" required placeholder="ex: jorge_silva">
+                    <input type="text" id="username" required placeholder="ex: marcelo_cine">
                 </div>
                 
                 <div class="input-wrapper">
-                    <label for="email">E-mail corporativo</label>
-                    <input type="email" id="email" required placeholder="nome@empresa.com">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" required placeholder="seuemail@exemplo.com">
                 </div>
                 
                 <div class="input-wrapper">
-                    <label for="password">Senha de acesso</label>
+                    <label for="password">Senha</label>
                     <input type="password" id="password" required placeholder="••••••••">
                 </div>
                 
-                <button type="submit" class="btn-primary">Criar conta gratuita</button>
+                <button type="submit" class="btn-primary">Começar a assistir</button>
             </form>
         </div>
 
-        <!-- TELA 2: SUCESSO PREMIUM (Troca de tela fluida) -->
+        <!-- TELA 2: SUCESSO DO PERFIL DE FILMES -->
         <div class="success-screen" id="successScreen">
             <div class="success-icon-box">
-                <!-- Ícone animado em SVG moderno -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
             </div>
             
-            <h3>Tudo pronto!</h3>
-            <p>Seu perfil foi validado e estamos preparando seu painel exclusivo neste momento.</p>
+            <h3>Perfil criado com sucesso!</h3>
+            <p>Pipoca pronta? Estamos preparando o catálogo completo e liberando as melhores produções para você.</p>
             
-            <!-- Linha de progresso estilizada -->
+            <!-- Linha de progresso -->
             <div class="loader-container">
                 <div class="loader-bar"></div>
             </div>
 
-            <button class="btn-dashboard" onclick="reiniciarFluxo()">Entrar no Dashboard</button>
+            <button class="btn-watch" onclick="reiniciarFluxo()">Bora assistir!</button>
         </div>
 
     </div>
@@ -289,20 +288,16 @@
         const successScreen = document.getElementById('successScreen');
         const registerForm = document.getElementById('mainRegisterForm');
 
-        // Transição de telas ao enviar o formulário
         registerForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Impede o reload da página
+            e.preventDefault();
 
-            // Esconde o formulário aplicando a classe
             formScreen.classList.add('hidden');
             
-            // Exibe a tela de sucesso premium com delay mínimo para a animação bater certo
             setTimeout(() => {
                 successScreen.classList.add('visible');
             }, 200);
         });
 
-        // Função apenas para testar o clique do botão final e resetar a tela
         function reiniciarFluxo() {
             successScreen.classList.remove('visible');
             setTimeout(() => {
