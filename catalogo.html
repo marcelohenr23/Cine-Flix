@@ -348,28 +348,55 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 12px;
             border-radius: 10px;
-            font-size: 12px;
-            color: #cbd5e1;
-            word-break: break-all;
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             margin-bottom: 16px;
-            text-align: left;
+            text-align: center;
+            font-style: italic;
         }
 
         .btn-copy {
             width: 100%;
-            padding: 12px;
-            background: #334155;
-            border: none;
-            border-radius: 10px;
+            padding: 14px;
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             color: white;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            font-size: 14px;
-            transition: background 0.2s;
+            font-size: 15px;
+            transition: all 0.2s;
         }
 
         .btn-copy:hover {
             background: #475569;
+            transform: translateY(-1px);
+        }
+
+        /* Mensagem Linda de Sucesso */
+        .success-toast {
+            margin-top: 14px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(21, 128, 61, 0.2) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            padding: 12px;
+            border-radius: 12px;
+            color: #4ade80;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .success-toast.show {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -400,19 +427,24 @@
                         Expira em: <span id="countdown">05:00</span>
                     </div>
 
-                    <p>Escaneie o QR Code ou copie a chave protegida abaixo para ativar instantaneamente.</p>
+                    <p>Escaneie o QR Code ou clique abaixo para copiar a chave de pagamento segura.</p>
                     
-                    <!-- QR Code Gerado usando uma string Pix segura -->
+                    <!-- QR Code atualizado com a nova chave aleatória -->
                     <div class="qr-code">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=00020101221226270014br.gov.bcb.pix2321fab39392@gmail.com" alt="QR Code Pix">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=00020101221226620014br.gov.bcb.pix2336dfe7ba22-2505-4f4f-a1f9-aec0e440da13" alt="QR Code Pix">
                     </div>
 
-                    <div class="pix-key-label">Chave Pix Destinatária (Mascarada):</div>
-                    <div class="pix-code-container" id="pixCode">
-                        fab*****2@gmail.com
+                    <div class="pix-key-label">Status da Chave:</div>
+                    <div class="pix-code-container">
+                        🔒 Chave Oculta por Segurança
                     </div>
 
-                    <button class="btn-copy" onclick="copiarPix()">Copiar Chave Pix</button>
+                    <button class="btn-copy" onclick="copiarPix()">Copiar Código Copia e Cola</button>
+
+                    <!-- Feedback lindo de sucesso detalhado -->
+                    <div class="success-toast" id="successToast">
+                        ✨ Chave copiada com sucesso! Pronta para pagar.
+                    </div>
                 </div>
             </div>
         </div>
@@ -467,11 +499,13 @@
 
     <script>
         let intervalocronometro;
-        const chaveRealOculta = "fab39392@gmail.com"; // Mantida em segurança na memória do JS
+        // Sua nova chave Pix configurada perfeitamente e protegida no script
+        const chaveRealOculta = "00020101221226620014br.gov.bcb.pix2336dfe7ba22-2505-4f4f-a1f9-aec0e440da13"; 
 
         function fecharAnuncio() {
             document.getElementById('adPopup').classList.add('hidden');
             clearInterval(intervalocronometro);
+            document.getElementById('successToast').classList.remove('show');
         }
 
         function mostrarPagamento() {
@@ -482,7 +516,13 @@
 
         function copiarPix() {
             navigator.clipboard.writeText(chaveRealOculta).then(() => {
-                alert('Chave Pix copiada para a área de transferência com sucesso!');
+                const toast = document.getElementById('successToast');
+                toast.classList.add('show');
+                
+                // Remove a mensagem depois de 4 segundos automaticamente
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
             });
         }
 
@@ -496,7 +536,7 @@
                 let minutos = parseInt(tempo / 60, 10);
                 let segundos = parseInt(tempo % 60, 10);
 
-                minutos = minutos < 10 ? "0" + minutos : minutes;
+                minutos = minutes < 10 ? "0" + minutos : minutes;
                 segundos = segundos < 10 ? "0" + segundos : segundos;
 
                 display.textContent = minutos + ":" + segundos;
