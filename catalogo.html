@@ -337,27 +337,19 @@
         /* --- MENSAGEM DO PIX COPIADO ESTILO NEO-NEON --- */
         .success-toast {
             margin-top: 16px;
-            background: rgba(225, 29, 72, 0.1);
+            background: rgba(225, 29, 72, 0.15);
             border: 2px solid #e11d48;
             padding: 12px;
             border-radius: 12px;
-            color: #fff;
+            color: #ffffff;
             font-size: 14px;
             font-weight: 700;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 15px rgba(225, 29, 72, 0.6), inset 0 0 10px rgba(225, 29, 72, 0.3);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-        }
-
-        .success-toast.show { 
-            opacity: 1; 
-            transform: translateY(0); 
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.8), inset 0 0 10px rgba(225, 29, 72, 0.4);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
         }
     </style>
 </head>
@@ -367,21 +359,21 @@
     <div class="ad-overlay" id="adPopup">
         <div class="ad-card">
             
-            <!-- Botão de fechar blindado inline -->
-            <button class="btn-close-ad" onclick="document.getElementById('adPopup').style.setProperty('display', 'none', 'important');">×</button>
+            <!-- Fechar Forçado sem dependência de script remoto -->
+            <button class="btn-close-ad" onclick="document.getElementById('adPopup').style.display='none';">×</button>
             
-            <!-- Tela de Oferta -->
+            <!-- Tela 1: Oferta -->
             <div id="offerScreen" class="ad-screen">
                 <div class="ad-image"></div>
                 <div class="ad-content">
                     <h3>Seja Premium</h3>
                     <span class="price-tag">Por apenas R$ 4,99</span>
                     <p>Desbloqueie todos os filmes em Ultra HD, faça downloads e assista aos seus títulos favoritos sem interrupções de anúncios!</p>
-                    <button class="btn-premium" onclick="document.getElementById('offerScreen').style.setProperty('display', 'none', 'important'); document.getElementById('paymentScreen').style.setProperty('display', 'block', 'important'); iniciarCronometroLocal();">Garantir Acesso Premium</button>
+                    <button class="btn-premium" onclick="document.getElementById('offerScreen').style.display='none'; document.getElementById('paymentScreen').style.display='block';">Garantir Acesso Premium</button>
                 </div>
             </div>
 
-            <!-- Tela de Pagamento -->
+            <!-- Tela 2: Pagamento -->
             <div id="paymentScreen" class="ad-screen" style="display: none;">
                 <div class="ad-content" style="margin-top: 40px;">
                     <h3>Pagamento via Pix</h3>
@@ -392,10 +384,12 @@
                     </div>
                     <div class="pix-key-label">Status da Chave:</div>
                     <div class="pix-code-container">🔒 Chave Oculta por Segurança</div>
-                    <button class="btn-copy" onclick="copiarChavePixRapido()">Copiar Código Copia e Cola</button>
                     
-                    <!-- Caixa de Sucesso Neo-Neon -->
-                    <div class="success-toast" id="successToast">⚡ PIX COPIADO! Cole no seu banco.</div>
+                    <!-- Botão aciona cópia e efeito Neon de forma direta -->
+                    <button class="btn-copy" onclick="executarCopiaPix();">Copiar Código Copia e Cola</button>
+                    
+                    <!-- Toast Neo-Neon -->
+                    <div class="success-toast" id="successToast">⚡ PIX COPIADO COM SUCESSO!</div>
                 </div>
             </div>
         </div>
@@ -458,37 +452,39 @@
         </div>
     </div>
 
-    <!-- Scripts Otimizados e Corrigidos -->
+    <!-- Script de alta compatibilidade -->
     <script>
-        var loopDoCronometro = null;
-        var chavePixGlobal = "dfe7ba22-2505-4f4f-a1f9-aec0e440da13";
+        var chavePix = "dfe7ba22-2505-4f4f-a1f9-aec0e440da13";
+        var tempoSegundos = 300;
 
-        function iniciarCronometroLocal() {
-            var tempoFaltante = 300;
-            var campoTexto = document.getElementById('countdown');
-            if(loopDoCronometro) clearInterval(loopDoCronometro);
-            
-            loopDoCronometro = setInterval(function() {
-                var m = Math.floor(tempoFaltante / 60);
-                var s = tempoFaltante % 60;
-                if(campoTexto) {
-                    campoTexto.textContent = (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
-                }
-                tempoFaltante--;
-                if(tempoFaltante < 0) {
-                    clearInterval(loopDoCronometro);
-                    document.getElementById('adPopup').style.setProperty('display', 'none', 'important');
-                }
-            }, 1000);
+        // Cronômetro Imparável
+        setInterval(function() {
+            var campo = document.getElementById('countdown');
+            if (campo) {
+                var min = Math.floor(tempoSegundos / 60);
+                var seg = tempoSegundos % 60;
+                campo.innerText = (min < 10 ? '0' : '') + min + ':' + (seg < 10 ? '0' : '') + seg;
+            }
+            if (tempoSegundos > 0) {
+                tempoSegundos--;
+            }
+        }, 1000);
+
+        // Copiar Pix e Exibir Neon
+        function executarCopiaPix() {
+            var input = document.createElement("input");
+            input.setAttribute("value", chavePix);
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand("copy");
+            document.body.removeChild(input);
+
+            var toast = document.getElementById('successToast');
+            if(toast) {
+                toast.style.display = 'flex';
+                setTimeout(function(){ toast.style.display = 'none'; }, 4000);
+            }
         }
-
-        // Nova função segura para copiar e acionar o Neo-Neon sem travar
-        function copiarChavePixRapido() {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(chavePixGlobal).then(mostrarMensagemNeon);
-            } else {
-                var inputTemporario = document.createElement("textarea");
-                inputTemporario.value = chavePixGlobal;
-                inputTemporario.style.position = "fixed";
-                document.body.appendChild(inputTemporario);
-                inputTemporario.focus
+    </script>
+</body>
+</html>
