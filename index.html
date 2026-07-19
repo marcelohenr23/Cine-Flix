@@ -3,74 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Conta - Profissional</title>
-    <!-- Link dos Ícones (Font Awesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Link do CSS Externo -->
-    <link rel="stylesheet" href="style.css">
+    <title>Bem-vindo à Plataforma</title>
+    <style>
+        /* --- Configurações Globais --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        /* --- Card Principal --- */
+        .card-box {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 440px;
+            position: relative;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- Estado 1: Formulário --- */
+        .form-screen {
+            transition: all 0.5s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .form-screen.hidden {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+            position: absolute;
+            width: calc(100% - 80px);
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .input-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        /* --- Estado 2: Tela de Sucesso Completa --- */
+        .success-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            position: absolute;
+            left: 40px;
+            right: 40px;
+        }
+
+        .success-screen.visible {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            position: relative;
+            left: 0;
+            right: 0;
+        }
+
+        /* Ícone de Sucesso Animado */
+        .success-icon-box {
+            width: 90px;
+            height: 90px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid rgba(34, 197, 94, 0.4);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+        }
+
+        .success-icon-box svg {
+            width: 45px;
+            height: 45px;
+            color: #22c55e;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawCheck 0.6s 0.3s forwards ease-in-out;
+        }
+
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .success-screen h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .success-screen p {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        /* Barra de carregamento/preparação do ambiente */
+        .loader-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            height: 6px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .loader-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, #22c55e, #10b981);
+            border-radius: 10px;
+            animation: loadIn 2.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes loadIn {
+            to { width: 100%; }
+        }
+
+        .btn-dashboard {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            opacity: 0;
+            animation: fadeInBtn 0.5s 2s forwards;
+        }
+
+        .btn-dashboard:hover {
+            background: #fff;
+            color: #0f172a;
+        }
+
+        @keyframes fadeInBtn {
+            to { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="form-box">
-            <h2>Criar Conta</h2>
-            <p class="subtitle">Seja bem-vindo! Preencha os dados abaixo para começar.</p>
-
-            <form id="registerForm">
-                <!-- Campo Nome -->
-                <div class="input-group">
-                    <i class="fa-regular fa-user input-icon"></i>
-                    <input type="text" id="name" placeholder="Nome completo" required>
+    <div class="card-box">
+        
+        <!-- TELA 1: FORMULÁRIO DE CADASTRO -->
+        <div class="form-screen" id="formScreen">
+            <h2>Criar sua conta</h2>
+            <p class="subtitle">Comece a configurar seu novo ambiente de trabalho.</p>
+            
+            <form id="mainRegisterForm">
+                <div class="input-wrapper">
+                    <label for="username">Nome de usuário</label>
+                    <input type="text" id="username" required placeholder="ex: jorge_silva">
                 </div>
-
-                <!-- Campo Email -->
-                <div class="input-group">
-                    <i class="fa-regular fa-envelope input-icon"></i>
-                    <input type="email" id="email" placeholder="E-mail corporativo ou pessoal" required>
+                
+                <div class="input-wrapper">
+                    <label for="email">E-mail corporativo</label>
+                    <input type="email" id="email" required placeholder="nome@empresa.com">
                 </div>
-
-                <!-- Campo Senha -->
-                <div class="input-group">
-                    <i class="fa-solid fa-lock input-icon"></i>
-                    <input type="password" id="password" placeholder="Senha (mínimo 8 caracteres)" required>
-                    <i class="fa-regular fa-eye toggle-password" id="togglePassword"></i>
+                
+                <div class="input-wrapper">
+                    <label for="password">Senha de acesso</label>
+                    <input type="password" id="password" required placeholder="••••••••">
                 </div>
-
-                <!-- Termos e Condições -->
-                <div class="terms-box">
-                    <input type="checkbox" id="terms" required>
-                    <label for="terms">Eu aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>.</label>
-                </div>
-
-                <!-- Botão de Enviar -->
-                <button type="submit" class="btn-main">Cadastrar</button>
-
-                <!-- Divisor -->
-                <div class="separator">
-                    <span>ou cadastre-se com</span>
-                </div>
-
-                <!-- Botões Sociais -->
-                <div class="social-buttons">
-                    <button type="button" class="btn-social"><i class="fa-brands fa-google"></i> Google</button>
-                    <button type="button" class="btn-social"><i class="fa-brands fa-apple"></i> Apple</button>
-                </div>
+                
+                <button type="submit" class="btn-primary">Criar conta gratuita</button>
             </form>
-
-            <p class="footer-text">Já tem uma conta? <a href="login.html">Faça login</a></p>
         </div>
+
+        <!-- TELA 2: SUCESSO PREMIUM (Troca de tela fluida) -->
+        <div class="success-screen" id="successScreen">
+            <div class="success-icon-box">
+                <!-- Ícone animado em SVG moderno -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+            </div>
+            
+            <h3>Tudo pronto!</h3>
+            <p>Seu perfil foi validado e estamos preparando seu painel exclusivo neste momento.</p>
+            
+            <!-- Linha de progresso estilizada -->
+            <div class="loader-container">
+                <div class="loader-bar"></div>
+            </div>
+
+            <button class="btn-dashboard" onclick="reiniciarFluxo()">Entrar no Dashboard</button>
+        </div>
+
     </div>
 
-    <!-- Script para a lógica de mostrar senha -->
     <script>
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#password');
+        const formScreen = document.getElementById('formScreen');
+        const successScreen = document.getElementById('successScreen');
+        const registerForm = document.getElementById('mainRegisterForm');
 
-        togglePassword.addEventListener('click', function () {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            this.classList.toggle('fa-eye-slash');
+        // Transição de telas ao enviar o formulário
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Impede o reload da página
+
+            // Esconde o formulário aplicando a classe
+            formScreen.classList.add('hidden');
+            
+            // Exibe a tela de sucesso premium com delay mínimo para a animação bater certo
+            setTimeout(() => {
+                successScreen.classList.add('visible');
+            }, 200);
         });
+
+        // Função apenas para testar o clique do botão final e resetar a tela
+        function reiniciarFluxo() {
+            successScreen.classList.remove('visible');
+            setTimeout(() => {
+                registerForm.reset();
+                formScreen.classList.remove('hidden');
+            }, 400);
+        }
     </script>
 </body>
 </html>
