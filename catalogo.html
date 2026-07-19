@@ -18,6 +18,7 @@
             overflow-x: hidden;
         }
 
+        /* --- Barra de Navegação --- */
         .navbar {
             position: fixed;
             top: 0;
@@ -47,6 +48,7 @@
             cursor: pointer;
         }
 
+        /* --- Banner Destaque --- */
         .hero-banner {
             position: relative;
             height: 70vh;
@@ -68,6 +70,11 @@
         .hero-description { font-size: 15px; color: #cbd5e1; line-height: 1.5; margin-bottom: 24px; }
         .hero-buttons { display: flex; gap: 12px; }
 
+        .btn { padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; }
+        .btn-play { background-color: #f8fafc; color: #0f172a; }
+        .btn-info { background-color: rgba(148, 163, 184, 0.2); color: #f8fafc; }
+
+        /* --- Listas de Filmes --- */
         .movie-section { padding: 0 4% 32px 4%; margin-top: -20px; position: relative; z-index: 10; }
         .movie-row { margin-bottom: 40px; }
         .row-title { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #f1f5f9; }
@@ -99,11 +106,7 @@
             text-overflow: ellipsis;
         }
 
-        .btn { padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; }
-        .btn-play { background-color: #f8fafc; color: #0f172a; }
-        .btn-info { background-color: rgba(148, 163, 184, 0.2); color: #f8fafc; }
-
-        /* Pop-up */
+        /* --- POP-UP PREMIUM --- */
         .ad-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 99999; }
         .ad-card { background: #1e293b; border-radius: 24px; width: 90%; max-width: 400px; position: relative; overflow: hidden; text-align: center; padding-bottom: 24px; }
         .btn-close-ad { position: absolute; top: 16px; right: 16px; background: rgba(15, 23, 42, 0.8); color: #fff; width: 40px; height: 40px; border-radius: 50%; border: none; font-size: 24px; cursor: pointer; }
@@ -172,54 +175,60 @@
     </div>
 
     <div class="movie-section">
+        <!-- Linha 1: Populares -->
         <div class="movie-row">
             <h2 class="row-title">Populares no Cine-Flix</h2>
             <div class="movie-grid">
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/5067706d-2ef9-4f61-9c01-1b40160557b2_m.jpg" alt="Filme 1">
-                    <div class="movie-title-label">Em Busca de Vingança</div>
+                    <div class="movie-title-label">A Ilha dos Mortos</div>
                 </div>
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/18e5f08c-81e9-447c-892f-72c061b908dd_m.jpg" alt="Filme 2">
-                    <div class="movie-title-label">O Passageiro</div>
+                    <div class="movie-title-label">Homens em Fúria</div>
                 </div>
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/9c7f1a61-1637-44aa-a7c0-6636bf3507a4_m.jpg" alt="Filme 3">
-                    <div class="movie-title-label">No Olho do Furacão</div>
+                    <div class="movie-title-label">Em Busca de Vingança</div>
                 </div>
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/06af2f10-f1a9-445a-9c5b-d40a3b55b942_m.jpg" alt="Filme 4">
-                    <div class="movie-title-label">Riddick 3</div>
+                    <div class="movie-title-label">O Passageiro</div>
                 </div>
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/dd74c265-69ab-4b6e-91ec-3121f60b5838_m.jpg" alt="Filme 5">
-                    <div class="movie-title-label">Nocaute</div>
+                    <div class="movie-title-label">No Olho do Furacão</div>
                 </div>
             </div>
         </div>
 
+        <!-- Linha 2: Adicionados Recentemente -->
         <div class="movie-row">
             <h2 class="row-title">Adicionados Recentemente</h2>
             <div class="movie-grid">
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/6afdfeec-b0a5-4862-893c-99144a5def20_m.jpg" alt="Filme 6">
-                    <div class="movie-title-label">Fúria em Alto Mar</div>
+                    <div class="movie-title-label">Riddick 3</div>
                 </div>
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/f4a3da90-f7c6-4211-bd00-5bf506395132_m.jpg" alt="Filme 7">
+                    <div class="movie-title-label">Nocaute</div>
+                </div>
+                <div class="movie-container">
+                    <img class="movie-poster" src="Imagens/3731e254-eeb5-4bec-84e8-7eafeseedfed5_m.jpg" alt="Filme 8">
+                    <div class="movie-title-label">Fúria em Alto Mar</div>
+                </div>
+                <div class="movie-container">
+                    <img class="movie-poster" src="Imagens/2a084cc6-3f18-4ff3-b5d3-2fffac894ea0_m.jpg" alt="Filme 9">
                     <div class="movie-title-label">Assassino a Preço Fixo</div>
                 </div>
                 <div class="movie-container">
-                    <img class="movie-poster" src="Imagens/2a084cc6-3f18-4ff3-b5d3-2fffac894ea0_m.jpg" alt="Filme 8">
+                    <img class="movie-poster" src="Imagens/659f9697-e227-429c-b1dc-82d9005e16e8_m.jpg" alt="Filme 10">
+                    <div class="movie-title-label">Jogo de Morte</div>
+                </div>
+                <div class="movie-container">
+                    <img class="movie-poster" src="Imagens/b512164c-afb8-4172-8cd1-71326314b5ac_m.jpg" alt="Filme 11">
                     <div class="movie-title-label">Caça às Bruxas</div>
-                </div>
-                <div class="movie-container">
-                    <img class="movie-poster" src="Imagens/659f9697-e227-429c-b1dc-82d9005e16e8_m.jpg" alt="Filme 9">
-                    <div class="movie-title-label">Vingança Implacável</div>
-                </div>
-                <div class="movie-container">
-                    <img class="movie-poster" src="Imagens/b512164c-afb8-4172-8cd1-71326314b5ac_m.jpg" alt="Filme 10">
-                    <div class="movie-title-label">Resgate de Alto Risco</div>
                 </div>
             </div>
         </div>
