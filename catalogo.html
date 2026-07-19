@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine-Flix | Catálogo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* --- Barra de Navegação --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 4%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9) 0%, transparent 100%);
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(to right, #e11d48, #cc1100);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #e11d48, #f43f5e);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .nav-profile:hover {
+            border-color: #fff;
+        }
+
+        /* --- Banner de Destaque --- */
+        .hero-banner {
+            position: relative;
+            height: 70vh;
+            background: linear-gradient(to top, #0f172a 10%, transparent 70%), 
+                        linear-gradient(to right, rgba(15, 23, 42, 0.8) 30%, transparent 100%),
+                        url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 4%;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            margin-top: 60px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero-info {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .match { color: #22c55e; }
+        .year { color: #94a3b8; }
+        .age { 
+            background: #334155; 
+            color: #cbd5e1; 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+        }
+
+        .hero-description {
+            font-size: 16px;
+            color: #cbd5e1;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-play {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .btn-play:hover { background-color: #e2e8f0; transform: scale(1.03); }
+
+        .btn-info {
+            background-color: rgba(148, 163, 184, 0.2);
+            color: #f8fafc;
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-info:hover { background-color: rgba(148, 163, 184, 0.3); }
+
+        /* --- Listas de Filmes (Rows) --- */
+        .movie-section {
+            padding: 0 4% 32px 4%;
+            margin-top: -20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .movie-row {
+            margin-bottom: 40px;
+        }
+
+        .row-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #f1f5f9;
+        }
+
+        .movie-grid {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            scroll-behavior: smooth;
+        }
+
+        /* Esconder barra de rolagem chata */
+        .movie-grid::-webkit-scrollbar { display: none; }
+        .movie-grid { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .movie-card {
+            min-width: 200px;
+            height: 120px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .movie-card:hover {
+            transform: scale(1.08);
+            z-index: 20;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        /* Imagens temporárias bonitas para simular capas */
+        .c1 { background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400'); }
+        .c2 { background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=400'); }
+        .c3 { background-image: url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=400'); }
+        .c4 { background-image: url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=400'); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="logo">Cine-Flix</a>
+        <div class="nav-profile" onclick="window.location.href='perfis.html'"></div>
+    </nav>
+
+    <div class="hero-banner">
+        <div class="hero-content">
+            <h1 class="hero-title">A Origem do Cosmos</h1>
+            <div class="hero-info">
+                <span class="match">98% relevante</span>
+                <span class="year">2026</span>
+                <span class="age">14+</span>
+            </div>
+            <p class="hero-description">
+                Em uma jornada visual impressionante através do tempo e do espaço, cientistas e astronautas desvendam os maiores mistérios escondidos nas profundezas do universo.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-play">▶ Assistir</button>
+                <button class="btn btn-info">ⓘ Mais informações</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="movie-section">
+        <!-- Fileira 1 -->
+        <div class="movie-row">
+            <h2 class="row-title">Populares no Cine-Flix</h2>
+            <div class="movie-grid">
+                <div class="movie-card c1"></div>
+                <div class="movie-card c2"></div>
+                <div class="movie-card c3"></div>
+                <div class="movie-card c4"></div>
+                <div class="movie-card c1"></div>
+            </div>
+        </div>
+
+        <!-- Fileira 2 -->
+        <div class="movie-row">
+            <h2 class="row-title">Bombando / Tendências</h2>
+            <div class="movie-grid">
+                <div class="movie-card c3"></div>
+                <div class="movie-card c1"></div>
+                <div class="movie-card c4"></div>
+                <div class="movie-card c2"></div>
+                <div class="movie-card c3"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
