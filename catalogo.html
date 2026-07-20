@@ -188,8 +188,8 @@
                     <div class="movie-title-label">Em Busca de Vingança</div>
                 </div>
                 <div class="movie-container">
-                    <img class="movie-poster" src="Imagens/06af2f10-f1a9-445a-9c5b-d40a3b55b942_m.jpg" alt="O Passageiro">
-                    <div class="movie-title-label">O Passageiro</div>
+                    <img class="movie-poster" src="Imagens/06af2f10-f1a9-445a-9c5b-d40a3b55b942_m.jpg" alt="Riddick 3">
+                    <div class="movie-title-label">Riddick 3</div>
                 </div>
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/dd74c265-69ab-4b6e-91ec-3121f60b5838_m.jpg" alt="No Olho do Furacão">
@@ -237,7 +237,7 @@
                 campo.innerText = (min < 10 ? '0' : '') + min + ':' + (seg < 10 ? '0' : '') + seg;
             }
             if (tempoSegundos > 0) tempoSegundos--;
-            else clearInterval(tempoInterval);
+            else clearInterval(timerInterval);
         }, 1000);
 
         document.getElementById('btnGoToPayment').addEventListener('click', function() {
