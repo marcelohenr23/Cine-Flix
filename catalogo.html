@@ -157,13 +157,13 @@
 
     <div class="hero-banner">
         <div class="hero-content">
-            <h1 class="hero-title">Em Busca de Vingança</h1>
+            <h1 class="hero-title">A Ilha dos Mortos</h1>
             <div class="hero-info">
                 <span>98% relevante</span>
                 <span class="year">2026</span>
                 <span class="age">16+</span>
             </div>
-            <p class="hero-description">Uma história densa cheia de ação, reviravoltas e pura adrenaline.</p>
+            <p class="hero-description">Uma história densa cheia de ação, reviravoltas e pura adrenalina.</p>
             <div class="hero-buttons">
                 <button class="btn btn-play">▶ Assistir</button>
                 <button class="btn btn-info">ⓘ Mais informações</button>
@@ -184,12 +184,12 @@
                     <div class="movie-title-label">Homens em Fúria</div>
                 </div>
                 <div class="movie-container">
-                    <img class="movie-poster" src="Imagens/06af2f10-f1a9-445a-9c5b-d40a3b55b942_m.jpg" alt="Riddick 3">
-                    <div class="movie-title-label">Riddick 3</div>
-                </div>
-                <div class="movie-container">
                     <img class="movie-poster" src="Imagens/9c7f1a61-1637-44aa-a7c0-6636bf3507a4_m.jpg" alt="Em Busca de Vingança">
                     <div class="movie-title-label">Em Busca de Vingança</div>
+                </div>
+                <div class="movie-container">
+                    <img class="movie-poster" src="Imagens/06af2f10-f1a9-445a-9c5b-d40a3b55b942_m.jpg" alt="O Passageiro">
+                    <div class="movie-title-label">O Passageiro</div>
                 </div>
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/dd74c265-69ab-4b6e-91ec-3121f60b5838_m.jpg" alt="No Olho do Furacão">
@@ -202,12 +202,12 @@
             <h2 class="row-title">Adicionados Recentemente</h2>
             <div class="movie-grid">
                 <div class="movie-container">
-                    <img class="movie-poster" src="Imagens/2a084cc6-3f18-4ff3-b5d3-2fffac894ea0_m.jpg" alt="Caça às Bruxas">
-                    <div class="movie-title-label">Caça às Bruxas</div>
+                    <img class="movie-poster" src="Imagens/3731e254-eeb5-4bec-84e8-7eafeaseefed5_m.jpg" alt="Jogo de Morte">
+                    <div class="movie-title-label">Jogo de Morte</div>
                 </div>
                 <div class="movie-container">
-                    <img class="movie-poster" src="Imagens/3731e254-eeb5-4bec-84e8-7eafeseedfed5_m.jpg" alt="Jogo de Morte">
-                    <div class="movie-title-label">Jogo de Morte</div>
+                    <img class="movie-poster" src="Imagens/659f9697-e227-429c-b1dc-82d9005e16e8_m.jpg" alt="Vingança Implacável">
+                    <div class="movie-title-label">Vingança Implacável</div>
                 </div>
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/6afdfeec-b0a5-4862-893c-99144a5def20_m.jpg" alt="Fúria em Alto Mar">
@@ -216,6 +216,10 @@
                 <div class="movie-container">
                     <img class="movie-poster" src="Imagens/f4a3da90-f7c6-4211-bd00-5bf506395132_m.jpg" alt="Assassino a Preço Fixo">
                     <div class="movie-title-label">Assassino a Preço Fixo</div>
+                </div>
+                <div class="movie-container">
+                    <img class="movie-poster" src="Imagens/2a084cc6-3f18-4ff3-b5d3-2fffac894ea0_m.jpg" alt="Caça às Bruxas">
+                    <div class="movie-title-label">Caça às Bruxas</div>
                 </div>
             </div>
         </div>
@@ -233,7 +237,7 @@
                 campo.innerText = (min < 10 ? '0' : '') + min + ':' + (seg < 10 ? '0' : '') + seg;
             }
             if (tempoSegundos > 0) tempoSegundos--;
-            else clearInterval(timerInterval);
+            else clearInterval(tempoInterval);
         }, 1000);
 
         document.getElementById('btnGoToPayment').addEventListener('click', function() {
